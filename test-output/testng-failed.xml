@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [TestNG session Test automation Suite1]" parallel="methods">
+  <test name="Different testNG features test(failed)" parallel="methods">
     <classes>
       <class name="esp.Controller.LoginController">
         <methods>
-          <include name="TestLogin" invocation-numbers="0 1 2"/>
+          <include name="TestLogin"/>
           <include name="TestSchedule"/>
           <include name="BeforeTestRun"/>
-          <include name="JobStatus"/>
           <include name="ApproveJOb"/>
           <include name="test"/>
         </methods>
       </class> <!-- esp.Controller.LoginController -->
+      <class name="esp.Controller.JobStatus">
+        <methods>
+          <include name="TestLogin"/>
+          <include name="BeforeTestRun"/>
+          <include name="test"/>
+          <include name="JobStatus"/>
+        </methods>
+      </class> <!-- esp.Controller.JobStatus -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Different testNG features test(failed) -->
+</suite> <!-- Failed suite [TestNG session Test automation Suite1] -->

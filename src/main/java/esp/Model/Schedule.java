@@ -47,9 +47,11 @@ public class Schedule
 		 
 		 Thread.sleep(1000);
 		 driver.findElement(By.id("bfUpload")).click();
+		 Thread.sleep(2000); 
+		 driver.switchTo().alert().accept();
+		 Thread.sleep(2000);
 		 
 		 driver.switchTo().alert().accept();
-		 Thread.sleep(1000);
 	}
 	
 	public static void SleectChannel(WebDriver driver)

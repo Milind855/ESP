@@ -23,6 +23,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -65,6 +66,9 @@ public class LoginController
 		driver=new ChromeDriver();
 		driver.get(prop.getProperty("url"));
 		driver.manage().window().maximize();
+//		ChromeOptions options = new ChromeOptions(); 
+//		options.setAcceptInsecureCerts(true);
+//		WebDriver driver = new ChromeDriver(options);
 		
 		TakeScreenShot.takescreenshot(driver, prop.getProperty("Snapshotpath"));
 		
@@ -121,6 +125,9 @@ public class LoginController
 		Thread.sleep(1000);
 		
 	}
+	/**
+	 * @throws InterruptedException
+	 */
 	@Test(dependsOnMethods= {"TestLogin"})
 	public static void TestSchedule() throws InterruptedException
 	{
@@ -133,7 +140,7 @@ public class LoginController
 		Schedule.Selectoption2(driver).click();
 		Thread.sleep(2000);
 		Schedule.FileUpload(driver);
-		driver.switchTo().alert().accept();
+		//driver.switchTo().alert().accept();
 		Thread.sleep(1000);
 		Schedule.SleectChannel(driver);
 		Thread.sleep(2000);
@@ -188,11 +195,12 @@ public class LoginController
 		driver.switchTo().alert().accept();
 		Thread.sleep(2000);
 		driver.switchTo().alert().accept();
-		//driver.close();
+		Thread.sleep(2000);
+		CampaignStatus.Logout(driver);
+		driver.close();
 	}
 	
-	
-	@Test(dependsOnMethods= {"TestLogin","TestSchedule","ApproveJOb"})
+	/*@Test(invocationCount=3)
 	public static void JobStatus() throws InterruptedException
 	{
 		Thread.sleep(2000);
@@ -202,11 +210,22 @@ public class LoginController
 		Thread.sleep(2000);
 		CampaignStatus.SubmitJob(driver).click();
 		Thread.sleep(2000);
+		CampaignStatus.SerachJob(driver).sendKeys("Hello0.3837888501940101");
+		Thread.sleep(2000);
+		CampaignStatus.CaptureStatus(driver).click();
+		
+		String text=driver.switchTo().activeElement().getText();
+		
+		System.out.println(text);
+		
+		Thread.sleep(1000);
+		driver.switchTo().alert().dismiss();
+		
 		driver.close();
 		
 	}
-	
-	
+
+	*/
 	
 	
 	
